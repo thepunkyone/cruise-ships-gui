@@ -11,10 +11,10 @@
         const viewport = document.querySelector('#viewport');
         if (counter % 2 === 0) {
           viewport.style.backgroundImage = 'url("images/water1.png")';
-          counter++;
+          counter += 1;
         } else {
           viewport.style.backgroundImage = 'url("images/water0.png")';
-          counter++;
+          counter += 1;
         }
       }
       window.setInterval(changeBackground, 1000);
