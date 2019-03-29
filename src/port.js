@@ -1,24 +1,27 @@
-function Port(name) {
-  this.name = name;
-  this.ships = [];
-}
+(function exportPort() {
 
-Port.prototype.addShip = function (ship) {
-  this.ships.push(ship);
-};
+  function Port(name) {
+    this.name = name;
+    this.ships = [];
+  }
+  
+  Port.prototype.addShip = function (ship) {
+    this.ships.push(ship);
+  };
+  
+  Port.prototype.removeShip = function (ship) {
+    if (this.ships.includes(ship)) {
+      const i = this.ships.indexOf(ship);
+      this.ships.splice(i, 1);
+    } else {
+      throw new Error(`${ship.name} not found at the port!`);
+    }
+  };
 
-Port.prototype.removeShip = function (ship) {
-  if (this.ships.includes(ship)) {
-    const i = this.ships.indexOf(ship);
-  	this.ships.splice(i, 1);
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Port;
   } else {
-		throw new Error(`${ship.name} not found at the port!`);
-	}
-};
+    window.Port = Port;
+  }
 
-//Sam's method with a false positive:
-// Port.prototype.removeShip = function removeShip(ship) {
-//     this.ships.splice(this.ships.indexOf[ship], 1);
-//   };
-
-module.exports = Port;
+}());
