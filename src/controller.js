@@ -14,6 +14,6 @@ class Controller {
                 counter++;
             }
         }
-        setInterval(changeBackground, 1000);
+        window.setInterval(changeBackground, 1000);
     }
 }
