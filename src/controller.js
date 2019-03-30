@@ -19,6 +19,21 @@
       }
       window.setInterval(changeBackground, 1000);
     }
+
+    renderPorts(ports) {
+      const portsElement = document.querySelector('#ports');
+      portsElement.style.width = '0px';
+      let portsElementWidthCounter = 0;
+
+      ports.forEach((port) => {
+        const portDiv = document.createElement('div');
+        portDiv.classList.add('port');
+        portDiv.setAttribute('data-portIndex', ports.indexOf(port));
+        portsElement.appendChild(portDiv);
+        portsElementWidthCounter += 256;
+        portsElement.style.width = portsElementWidthCounter + 'px';
+      });
+    }
   }
 
   if (typeof module !== 'undefined' && module.exports) {

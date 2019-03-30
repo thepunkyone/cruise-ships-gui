@@ -10,13 +10,24 @@
 </head>
 <body>
     <div id="viewport">
+        <div id="ports">
+
+        </div>
 
     </div>
     <script src="src/controller.js"></script>
     <script src="src/port.js"></script>
+    <script src="src/itinerary.js"></script>
+    <script src="src/cruise-ships.js"></script>
     <script>
         const controller = new Controller();
         controller.initialiseSea();
+
+        const dover = new Port('Dover');
+        const calais = new Port('Calais');
+
+        const itinerary = new Itinerary([dover, calais]);
+        controller.renderPorts(itinerary.ports);
     </script>
 </body>
 </html>
