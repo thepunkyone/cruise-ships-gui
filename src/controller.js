@@ -34,6 +34,15 @@
         portsElement.style.width = portsElementWidthCounter + 'px';
       });
     }
+
+    renderShip(ship) {
+      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const currentPortObject = document.querySelector(`.port[data-portIndex="${currentPortIndex}"]`);
+      const shipDiv = document.getElementById('ship');
+      shipDiv.style.top = `${currentPortObject.offsetTop + 32}px`;
+      shipDiv.style.left = `${currentPortObject.offsetLeft - 32}px`;
+    }
+
   }
 
   if (typeof module !== 'undefined' && module.exports) {
