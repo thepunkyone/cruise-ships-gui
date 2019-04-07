@@ -1,8 +1,8 @@
 (function exportController() {
 
   class Controller {
-    constructor() {
-
+    constructor(ship) {
+      this.ship = ship;
     }
 
     initialiseSea() {
@@ -35,8 +35,8 @@
       });
     }
 
-    renderShip(ship) {
-      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+    renderShip() {
+      const currentPortIndex = this.ship.itinerary.ports.indexOf(this.ship.currentPort);
       const currentPortObject = document.querySelector(`.port[data-portIndex="${currentPortIndex}"]`);
       const shipDiv = document.getElementById('ship');
       shipDiv.style.top = `${currentPortObject.offsetTop + 32}px`;

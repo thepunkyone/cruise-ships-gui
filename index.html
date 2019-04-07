@@ -7,6 +7,7 @@
     <title>Cruise Ships GUI</title>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet"> 
 </head>
 <body>
     <div id="viewport">
@@ -14,24 +15,26 @@
         </div>
         <div id="ship">
         </div>
+        <div id="sailbutton">
+            Set sail!
+        </div>
     </div>
     <script src="src/controller.js"></script>
     <script src="src/port.js"></script>
     <script src="src/itinerary.js"></script>
     <script src="src/cruise-ships.js"></script>
     <script>
-        const controller = new Controller();
-        controller.initialiseSea();
-
-        const dover = new Port('Dover');
-        const calais = new Port('Calais');
-
-        const itinerary = new Itinerary([dover, calais]);
-        controller.renderPorts(itinerary.ports);
-
+        const aberdeen = new Port('Aberdeen');
+        const kirkwall = new Port('Kirkwall');
+        const stormness = new Port('Stormness');
+        const itinerary = new Itinerary([aberdeen, kirkwall, stormness]);
         const ship  = new Ship(itinerary);
-        controller.renderShip(ship);
 
+        const controller = new Controller(ship);
+
+        controller.initialiseSea();
+        controller.renderPorts(itinerary.ports);
+        controller.renderShip();
     </script>
 </body>
 </html>

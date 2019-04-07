@@ -9,6 +9,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-family: VT323, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #viewport {
@@ -37,4 +38,16 @@ body {
     width: 128px;
     height: 64px;
     position: absolute;
+}
+
+#sailbutton {
+    background: red;
+    color: white;
+    font-size:2em;
+    text-align: center;
+    text-shadow: 1px 1px black;
+    position: fixed;
+    width: 640px;
+    height: 38px;
+    margin-top: 90px;
 }
