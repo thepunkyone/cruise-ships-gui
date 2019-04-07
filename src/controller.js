@@ -93,19 +93,21 @@
         this.renderMessage('End of the line!');
       }
 
-      ship.setSail();
-      this.renderMessage(`Now departing ${ship.itinerary.ports[nextPortIndex - 1].name}`);
+      if (ship.currentPort !== null) {
+        ship.setSail();
+        this.renderMessage(`Now departing ${ship.itinerary.ports[nextPortIndex - 1].name}`);
 
-      const sailInterval = setInterval(() => {
-        const shipLeftPosition = parseInt(shipDiv.style.left, 10);
-        if (shipLeftPosition === (nextPortObject.offsetLeft - 32)) {
-          ship.dock();
-          this.renderMessage(`Docking at ${ship.itinerary.ports[nextPortIndex].name}`);
-          this.renderDisplay();
-          clearInterval(sailInterval);
-        }
-        shipDiv.style.left = `${shipLeftPosition + 1}px`;
-      }, 20);
+        const sailInterval = setInterval(() => {
+          const shipLeftPosition = parseInt(shipDiv.style.left, 10);
+          if (shipLeftPosition === (nextPortObject.offsetLeft - 32)) {
+            ship.dock();
+            this.renderMessage(`Docking at ${ship.itinerary.ports[nextPortIndex].name}`);
+            this.renderDisplay();
+            clearInterval(sailInterval);
+          }
+          shipDiv.style.left = `${shipLeftPosition + 1}px`;
+        }, 20);
+      }
     }
 
   }
