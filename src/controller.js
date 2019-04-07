@@ -6,6 +6,7 @@
     constructor(ship) {
       this.ship = ship;
       document.getElementById('sailbutton').addEventListener('click', () => this.setSail());
+      this.renderDisplay();
     }
 
     initialiseSea() {
@@ -30,7 +31,7 @@
 
       ports.forEach((port) => {
         const portDiv = document.createElement('div');
-        portDiv.classList.add('port');
+        portDiv.className = 'port';
         portDiv.setAttribute('data-portIndex', ports.indexOf(port));
         portsElement.appendChild(portDiv);
         portsElementWidthCounter += 256;
@@ -47,13 +48,39 @@
 
     renderMessage(message) {
       const messageDiv = document.createElement('div');
-      messageDiv.setAttribute('id', 'message');
+      messageDiv.id = 'message';
       messageDiv.innerHTML = message;
 
       document.getElementById('viewport').appendChild(messageDiv);
       window.setTimeout(() => {
         document.getElementById('viewport').removeChild(messageDiv);
       }, 2000);
+    }
+
+    renderDisplay() {
+      const display = document.getElementById('display');
+      const ship = this.ship;
+
+      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const nextPortIndex = currentPortIndex + 1;
+      const ports = ship.itinerary.ports;
+
+      if (nextPortIndex < ports.length) {
+        display.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+        const currentPort = document.createElement('p');
+        currentPort.innerHTML = `Current port: ${ports[currentPortIndex].name}`;
+        const nextPort = document.createElement('p');
+        nextPort.innerHTML = `Next port: ${ports[nextPortIndex].name}`;
+        fragment.appendChild(currentPort);
+        fragment.appendChild(nextPort);
+        display.appendChild(fragment);
+      } else {
+        display.innerHTML = '';
+        const currentPort = document.createElement('p');
+        currentPort.innerHTML = `Current port: ${ports[currentPortIndex].name}`;
+        display.appendChild(currentPort);
+      }
     }
 
     setSail() {
@@ -74,6 +101,7 @@
         if (shipLeftPosition === (nextPortObject.offsetLeft - 32)) {
           ship.dock();
           this.renderMessage(`Docking at ${ship.itinerary.ports[nextPortIndex].name}`);
+          this.renderDisplay();
           clearInterval(sailInterval);
         }
         shipDiv.style.left = `${shipLeftPosition + 1}px`;

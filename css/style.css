@@ -6,10 +6,21 @@ html, body {
 body {
     background: black;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: VT323, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#display {
+    color: white;
+    text-align: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 2em;
+    line-height: 0.1em;
+    padding-right: 1em;
 }
 
 #viewport {
@@ -45,7 +56,7 @@ body {
     text-shadow: 1px 1px black;
     position: fixed;
     height: 38px;
-    margin-top: 88px;
+    margin-top: 90px;
 }
 
 #sailbutton {
