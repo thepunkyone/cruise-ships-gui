@@ -50,4 +50,13 @@ body {
     width: 640px;
     height: 38px;
     margin-top: 90px;
+    border-bottom: 4px solid #d8040f;
+
+}
+
+#sailbutton:focus {
+    background-color: #d8040f;
+    border-bottom-width: 0;
+    padding-bottom:4px;
+
 }

@@ -1,8 +1,11 @@
 (function exportController() {
 
+  const shipDiv = document.getElementById('ship');
+
   class Controller {
     constructor(ship) {
       this.ship = ship;
+      document.getElementById('sailbutton').addEventListener('click', () => this.setSail());
     }
 
     initialiseSea() {
@@ -38,9 +41,30 @@
     renderShip() {
       const currentPortIndex = this.ship.itinerary.ports.indexOf(this.ship.currentPort);
       const currentPortObject = document.querySelector(`.port[data-portIndex="${currentPortIndex}"]`);
-      const shipDiv = document.getElementById('ship');
       shipDiv.style.top = `${currentPortObject.offsetTop + 32}px`;
       shipDiv.style.left = `${currentPortObject.offsetLeft - 32}px`;
+    }
+
+    setSail() {
+      const ship = this.ship;
+      const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+      const nextPortIndex = currentPortIndex + 1;
+      const nextPortObject = document.querySelector(`.port[data-portIndex="${nextPortIndex}"]`);
+
+      if (!nextPortObject) {
+        return alert('End of the line!');
+      }
+
+      ship.setSail();
+
+      const sailInterval = setInterval(() => {
+        const shipLeftPosition = parseInt(shipDiv.style.left, 10);
+        if (shipLeftPosition === (nextPortObject.offsetLeft - 32)) {
+          ship.dock();
+          clearInterval(sailInterval);
+        }
+        shipDiv.style.left = `${shipLeftPosition + 1}px`;
+      }, 20);
     }
 
   }
