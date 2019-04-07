@@ -45,6 +45,17 @@
       shipDiv.style.left = `${currentPortObject.offsetLeft - 32}px`;
     }
 
+    renderMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.setAttribute('id', 'message');
+      messageDiv.innerHTML = message;
+
+      document.getElementById('viewport').appendChild(messageDiv);
+      window.setTimeout(() => {
+        document.getElementById('viewport').removeChild(messageDiv);
+      }, 2000);
+    }
+
     setSail() {
       const ship = this.ship;
       const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
@@ -52,15 +63,17 @@
       const nextPortObject = document.querySelector(`.port[data-portIndex="${nextPortIndex}"]`);
 
       if (!nextPortObject) {
-        return alert('End of the line!');
+        this.renderMessage('End of the line!');
       }
 
       ship.setSail();
+      this.renderMessage(`Now departing ${ship.itinerary.ports[nextPortIndex - 1].name}`);
 
       const sailInterval = setInterval(() => {
         const shipLeftPosition = parseInt(shipDiv.style.left, 10);
         if (shipLeftPosition === (nextPortObject.offsetLeft - 32)) {
           ship.dock();
+          this.renderMessage(`Docking at ${ship.itinerary.ports[nextPortIndex].name}`);
           clearInterval(sailInterval);
         }
         shipDiv.style.left = `${shipLeftPosition + 1}px`;

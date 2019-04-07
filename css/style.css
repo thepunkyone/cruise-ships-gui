@@ -40,17 +40,21 @@ body {
     position: absolute;
 }
 
-#sailbutton {
-    background: red;
-    color: white;
+#sailbutton, #message {
     font-size:2em;
-    text-align: center;
     text-shadow: 1px 1px black;
     position: fixed;
-    width: 640px;
     height: 38px;
-    margin-top: 90px;
+    margin-top: 88px;
+}
+
+#sailbutton {
+    width: 640px;
+    background: red;
+    color: white;
+    border-top: 2px solid red;
     border-bottom: 4px solid #d8040f;
+    text-align: center;
 
 }
 
@@ -59,4 +63,13 @@ body {
     border-bottom-width: 0;
     padding-bottom:4px;
 
+}
+
+#message {
+    width: calc(640px - 0.5em);
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-top: 2px solid black;
+    padding-left: 0.5em;
 }
