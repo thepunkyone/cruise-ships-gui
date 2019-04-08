@@ -88,6 +88,7 @@
       const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
       const nextPortIndex = currentPortIndex + 1;
       const nextPortObject = document.querySelector(`.port[data-portIndex="${nextPortIndex}"]`);
+      const viewport = document.getElementById('viewport');
 
       if (!nextPortObject) {
         this.renderMessage('End of the line!');
@@ -107,6 +108,14 @@
           }
           shipDiv.style.left = `${shipLeftPosition + 1}px`;
         }, 20);
+
+        const panInterval = setInterval(() => {
+          if (ship.currentPort === null) {
+            viewport.scrollLeft = `${viewport.scrollLeft + 1}`;
+          } else {
+            clearInterval(panInterval);
+          }
+        }, 80);
       }
     }
 
