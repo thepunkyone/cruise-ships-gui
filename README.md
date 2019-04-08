@@ -1,6 +1,6 @@
-# Cruise Ships
+# Cruise Ships GUI
 
-A JavaScript object-oriented programming exercise based on [Manchester Codes](https://github.com/MCRcodes) tutorial.
+A JavaScript object-oriented programming exercise based on [Manchester Codes](https://github.com/MCRcodes) tutorial, now with an added GUI! 🚢🌊⚓
 
 ## Getting Started
 
