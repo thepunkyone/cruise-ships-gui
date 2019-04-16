@@ -5,8 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cruise Ships GUI</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet"> 
 </head>
 <body>
-    
+    <div id="display">
+    </div>
+    <div id="viewport">
+        <div id="ports">
+        </div>
+        <div id="ship">
+        </div>
+        <button id="sailbutton">
+            Set Sail!
+        </button>
+    </div>
+    <script src="src/port.js"></script>
+    <script src="src/itinerary.js"></script>
+    <script src="src/cruise-ships.js"></script>
+    <script src="src/controller.js"></script>
+    <script>
+        const aberdeen = new Port('Aberdeen');
+        const kirkwall = new Port('Kirkwall');
+        const stormness = new Port('Stormness');
+        const itinerary = new Itinerary([aberdeen, kirkwall, stormness]);
+        const ship  = new Ship(itinerary);
+
+        const controller = new Controller(ship);
+
+        controller.initialiseSea();
+        controller.renderPorts(itinerary.ports);
+        controller.renderShip();
+    </script>
 </body>
 </html>

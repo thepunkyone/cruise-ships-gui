@@ -1,0 +1,86 @@
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: VT323, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#display {
+    color: white;
+    text-align: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 2em;
+    line-height: 0.1em;
+    padding-right: 1em;
+}
+
+#viewport {
+    background-image: url("../images/water0.png");
+    width: 640px;
+    height: 256px;
+    position: relative;
+    overflow-x: auto;
+}
+
+#ports {
+    width: 0px;
+    margin-top: 96px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#ports > .port {
+    width: 64px;
+    height: 32px;
+    background-image: url("../images/port.png");
+}
+
+#ship {
+    background-image: url("../images/ship.png");
+    width: 128px;
+    height: 64px;
+    position: absolute;
+}
+
+#sailbutton, #message {
+    font-size:2em;
+    text-shadow: 1px 1px black;
+    position: fixed;
+    height: 38px;
+    margin-top: 90px;
+}
+
+#sailbutton {
+    width: 640px;
+    background: red;
+    color: white;
+    border-top: 2px solid red;
+    border-bottom: 4px solid #d8040f;
+    text-align: center;
+
+}
+
+#sailbutton:focus {
+    background-color: #d8040f;
+    border-bottom-width: 0;
+    padding-bottom:4px;
+
+}
+
+#message {
+    width: calc(640px - 0.5em);
+    background-color: white;
+    color: black;
+    text-align: left;
+    border-top: 2px solid black;
+    padding-left: 0.5em;
+}
